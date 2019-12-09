@@ -1,7 +1,7 @@
 {
-  "name": "jairforo/vat-checker-php",
-  "description": "VAT validation based on ",
-  "keywords": ["vat", "validation", "vies"],
+  "name": "jairforo/php-vat-checker",
+  "description": "PHP VAT checker based on the European Commission web service",
+  "keywords": ["vat", "validation", "vies", "php", "checker", "checkVatService"],
   "license": "BSD-2-Clause",
   "authors": [
     {
