@@ -4,7 +4,7 @@ A PHP package that helps you to check information about European companies throu
 
 ## Installation
 ```
-composer require jairforo/php-vat-checker
+composer require jairforo/php-vat-checker dev-master
 ```
 
 ## Usage
@@ -13,7 +13,7 @@ use JairForo\VATChecker\VATChecker;
 
 $vatInformation = (new VATChecker($countryCode, $vatNumber))->checkVAT();
 
-print_r(json_encode($vatInformation))
+print_r(json_encode($vatInformation));
 
 {
     "country_code": "RO",
