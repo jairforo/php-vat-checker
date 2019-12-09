@@ -1,0 +1,24 @@
+{
+  "name": "jairforo/vat-checker-php",
+  "description": "VAT validation based on ",
+  "keywords": ["vat", "validation", "vies"],
+  "license": "BSD-2-Clause",
+  "authors": [
+    {
+      "name": "Jair Foro",
+      "email": "jairforo@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.2.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^8.5",
+    "ext-curl": "*",
+    "ext-simplexm": "*"
+  },
+  "autoload": {
+    "psr-4": {"JairForo\\VATChecker\\": "src/"}
+  },
+  "minimum-stability": "stable"
+}
