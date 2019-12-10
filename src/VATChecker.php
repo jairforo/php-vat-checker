@@ -122,7 +122,7 @@ class VATChecker
         return $this->parseSoapResponse($response);
     }
 
-    private function parseSoapResponse($response)
+    private function parseSoapResponse($response): array
     {
         $response = preg_replace("/(<\/?)(\w+):([^>]*>)/", "$1$2$3", $response);
         $data = (array) (new \SimpleXMLElement($response))->soapBody->checkVatResponse;
