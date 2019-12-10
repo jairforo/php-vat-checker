@@ -20,7 +20,9 @@ print_r(json_encode($vatInformation));
     "vat_number": "8545021xxxx",
     "valid": true,
     "company_name": "Unicorn B.V.",
-    "address": "<street> <number> <postcode> <city>"
+    "address": "Unicorn Street 24",
+    "postcode": "1097 BC",
+    "city": "Amsterdam",
 }
 
 ```
