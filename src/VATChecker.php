@@ -135,7 +135,7 @@ class VATChecker
         $data = (array) (new \SimpleXMLElement($response))->soapBody->checkVatResponse;
 
         $address = $number = $name = null;
-        if ($data['address'] !== '---') {
+        if ($data["address"] instanceof SimpleXMLElement) {
             $addressData = explode(' ', trim(str_replace("\n", ' ', $data['address'])));
 
             list($address, $number, $postcode, $city) = $addressData;
