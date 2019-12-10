@@ -27,6 +27,7 @@ class VATCheckerTest extends TestCase
     public function testShouldReturnAValidEntity(): void
     {
         $vatInfo = (new VATChecker('NL', '854502130B01'))->checkVAT();
+
         $this->assertArrayHasKey('country_code', $vatInfo);
         $this->assertArrayHasKey('vat_number', $vatInfo);
         $this->assertArrayHasKey('valid', $vatInfo);

@@ -126,13 +126,18 @@ class VATChecker
     {
         $response = preg_replace("/(<\/?)(\w+):([^>]*>)/", "$1$2$3", $response);
         $data = (array) (new \SimpleXMLElement($response))->soapBody->checkVatResponse;
-        $data['address'] = trim(str_replace("\n", ' ', $data['address']));
+
+        $addressData = explode(' ', trim(str_replace("\n", ' ', $data['address'])));
+        list($address, $number, $postcode, $city) = $addressData;
+
         return [
             'country_code' => $data['countryCode'],
             'vat_number' => $data['vatNumber'],
             'valid' => (bool) $data['valid'],
-            'company_name' => $data['name'],
-            'address' => $data['address'] ?? null,
+            'company_name' => $data['name'] ?? null,
+            'address' => $address ? $address . ' ' . $number : null,
+            'postcode' => $postcode ?? null,
+            'city' => $city ?? null,
         ];
     }
 }
