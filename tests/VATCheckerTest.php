@@ -34,5 +34,15 @@ class VATCheckerTest extends TestCase
         $this->assertArrayHasKey('company_name', $vatInfo);
         $this->assertArrayHasKey('address', $vatInfo);
     }
+
+    public function testShouldReturnAGermanEntityWithoutNameAndAddressData(): void
+    {
+        $vatInfo = (new VATChecker('DE', '811191002'))->checkVAT();
+
+        $this->assertNull($vatInfo['company_name']);
+        $this->assertNull($vatInfo['address']);
+        $this->assertNull($vatInfo['postcode']);
+        $this->assertNull($vatInfo['city']);
+    }
 }
 
