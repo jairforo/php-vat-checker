@@ -44,5 +44,16 @@ class VATCheckerTest extends TestCase
         $this->assertNull($vatInfo['postcode']);
         $this->assertNull($vatInfo['city']);
     }
+
+    public function testShouldReturnAFalseVat(): void
+    {
+        $vatInfo = (new VATChecker('NL', '4502130B01'))->checkVAT();
+
+        $this->assertFalse($vatInfo['valid']);
+        $this->assertNull($vatInfo['company_name']);
+        $this->assertNull($vatInfo['address']);
+        $this->assertNull($vatInfo['postcode']);
+        $this->assertNull($vatInfo['city']);
+    }
 }
 

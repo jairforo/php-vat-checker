@@ -51,7 +51,7 @@ class VATChecker
     public function __construct(string $countryCode, string $vatNumber)
     {
         if(!in_array($countryCode, self::EU_COUNTRIES)) {
-            throw new \InvalidArgumentException('The country code does not belong to EU');
+            throw new \InvalidArgumentException('The country code does not belong to European Union');
         }
 
         $this->countryCode = $countryCode;
@@ -119,10 +119,17 @@ class VATChecker
             return [];
         }
 
-        return $this->parseSoapResponse($response);
+        $statusCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+
+        if ($statusCode > 200) {
+            throw new \Exception($this->getMessageByStatusCode($statusCode), $statusCode);
+        }
+
+        return $this->parseSoapResponse($response, $statusCode);
     }
 
-    private function parseSoapResponse($response): array
+
+    private function parseSoapResponse($response, $statusCode): array
     {
         $response = preg_replace("/(<\/?)(\w+):([^>]*>)/", "$1$2$3", $response);
         $data = (array) (new \SimpleXMLElement($response))->soapBody->checkVatResponse;
@@ -139,11 +146,53 @@ class VATChecker
         return [
             'country_code' => $data['countryCode'],
             'vat_number' => $data['vatNumber'],
-            'valid' => (bool) $data['valid'],
+            'valid' => $data['valid'] === "true" ? true : false,
             'company_name' => $name ?? null,
             'address' => $address ?? null,
             'postcode' => $postcode ?? null,
             'city' => $city ?? null,
         ];
+    }
+
+    private function getMessageByStatusCode(int $statusCode): string
+    {
+        $errorMessage = 'SOMETHING_WENT_WRONG';
+        switch ($statusCode) {
+            case 201:
+                $errorMessage = 'INVALID_INPUT';
+                break;
+            case 202:
+                $errorMessage = 'INVALID_REQUESTER_INFO';
+                break;
+            case 300:
+                $errorMessage = 'SERVICE_UNAVAILABLE';
+                break;
+            case 301:
+                $errorMessage = 'MS_UNAVAILABLE';
+                break;
+            case 302:
+                $errorMessage = 'MS_UNAVAILABLE';
+                break;
+            case 400:
+                $errorMessage = 'VAT_BLOCKED';
+                break;
+            case 401:
+                $errorMessage = 'IP_BLOCKED';
+                break;
+            case 500:
+                $errorMessage = 'GLOBAL_MAX_CONCURRENT_REQ';
+                break;
+            case 501:
+                $errorMessage = 'GLOBAL_MAX_CONCURRENT_REQ_TIME';
+                break;
+            case 600:
+                $errorMessage = 'MS_MAX_CONCURRENT_REQ';
+                break;
+            case 601:
+                $errorMessage = 'MS_MAX_CONCURRENT_REQ_TIME';
+                break;
+        }
+
+        return $errorMessage;
     }
 }
