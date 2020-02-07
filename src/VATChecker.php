@@ -116,11 +116,13 @@ SOAP;
         $response = preg_replace("/(<\/?)(\w+):([^>]*>)/", "$1$2$3", $response);
         $data = (array) (new \SimpleXMLElement($response))->soapBody->checkVatResponse;
 
-        $addressData = explode(' ', trim(str_replace("\n", ' ', $data['address'])));
-        $city = $addressData[count($addressData)-1];
-        $postcode = $addressData[count($addressData)-2];
+        if ($data['address']) {
+            $addressData = explode(' ', trim(str_replace("\n", ' ', $data['address'])));
+            $city = $addressData[count($addressData)-1];
+            $postcode = $addressData[count($addressData)-2];
 
-        $address = implode(' ', array_slice($addressData, 0, -2));
+            $address = implode(' ', array_slice($addressData, 0, -2));
+        }
 
         return [
             'country_code' => $data['countryCode'],
