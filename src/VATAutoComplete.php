@@ -2,7 +2,7 @@
 
 namespace JairForo\VATChecker;
 
-class VATChecker implements VATCheckerInterface
+class VATAutoComplete
 {
     const URL = 'http://ec.europa.eu/taxation_customs/vies/services/checkVatService';
 

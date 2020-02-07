@@ -1,5 +1,5 @@
 {
-  "name": "jairforo/php-vat-checker",
+  "name": "jairforo/php-vat-autocomplete",
   "description": "PHP VAT checker based on the European Commission web service",
   "keywords": ["vat", "validation", "vies", "php", "checker", "checkVatService"],
   "license": "BSD-2-Clause",
@@ -18,7 +18,7 @@
     "ext-curl": "*"
   },
   "autoload": {
-    "psr-4": {"JairForo\\VATChecker\\": "src/"}
+    "psr-4": {"JairForo\\VATAutoComplete\\": "src/"}
   },
   "minimum-stability": "stable"
 }

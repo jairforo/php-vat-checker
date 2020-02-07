@@ -1,10 +1,10 @@
 <?php
 
-namespace JairForo\VATChecker;
+namespace JairForo\VATAutoComplete;
 
 use PHPUnit\Framework\TestCase;
 
-class VATCheckerTest extends TestCase
+class VATAutoCompleteTest extends TestCase
 {
     public function setUp(): void
     {
@@ -14,12 +14,12 @@ class VATCheckerTest extends TestCase
     public function testShouldNotHaveAnInvalidCountryCode(): void
     {
         $this->expectException(\InvalidArgumentException::class);
-        new VATChecker('BR', '854502130B01');
+        new VATAutoComplete('BR', '854502130B01');
     }
 
     public function testShouldReturnAValidEntity(): void
     {
-        $vatInfo = (new VATChecker('NL', '854502130B01'))->checkVAT();
+        $vatInfo = (new VATAutoComplete('NL', '854502130B01'))->checkVAT();
 
         $this->assertArrayHasKey('country_code', $vatInfo);
         $this->assertArrayHasKey('vat_number', $vatInfo);
@@ -30,7 +30,7 @@ class VATCheckerTest extends TestCase
 
     public function testShouldReturnAGermanEntityWithoutNameAndAddressData(): void
     {
-        $vatInfo = (new VATChecker('DE', '811191002'))->checkVAT();
+        $vatInfo = (new VATAutoComplete('DE', '811191002'))->checkVAT();
 
         $this->assertNull($vatInfo['company_name']);
         $this->assertNull($vatInfo['address']);
@@ -40,7 +40,7 @@ class VATCheckerTest extends TestCase
 
     public function testShouldReturnAFalseVat(): void
     {
-        $vatInfo = (new VATChecker('NL', '4502130B01'))->checkVAT();
+        $vatInfo = (new VATAutoComplete('NL', '4502130B01'))->checkVAT();
 
         $this->assertFalse($vatInfo['valid']);
     }
