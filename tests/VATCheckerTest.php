@@ -17,13 +17,6 @@ class VATCheckerTest extends TestCase
         new VATChecker('BR', '854502130B01');
     }
 
-    public function testShouldHaveValidCountryCode(): void
-    {
-        $checker = new VATChecker('NL', '854502130B01');
-        $this->assertEquals($checker->getVatNumber(), '854502130B01');
-        $this->assertEquals($checker->getCountryCode(), 'NL');
-    }
-
     public function testShouldReturnAValidEntity(): void
     {
         $vatInfo = (new VATChecker('NL', '854502130B01'))->checkVAT();
@@ -50,10 +43,6 @@ class VATCheckerTest extends TestCase
         $vatInfo = (new VATChecker('NL', '4502130B01'))->checkVAT();
 
         $this->assertFalse($vatInfo['valid']);
-        $this->assertNull($vatInfo['company_name']);
-        $this->assertNull($vatInfo['address']);
-        $this->assertNull($vatInfo['postcode']);
-        $this->assertNull($vatInfo['city']);
     }
 }
 
