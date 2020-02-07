@@ -1,6 +1,6 @@
 <?php
 
-namespace JairForo\VATChecker;
+namespace JairForo\VATAutoComplete;
 
 class VATAutoComplete
 {
