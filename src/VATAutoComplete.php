@@ -128,7 +128,7 @@ SOAP;
             $address = implode(' ', array_slice($addressData, 0, -2));
         }
 
-        $name = $data['name'] !== '---' ? $data['name'] : null;
+        $name = ($data['name'] !== '---' && !is_object($data['name'])) ? $data['name'] : null;
 
         return [
             'country_code' => $data['countryCode'],
