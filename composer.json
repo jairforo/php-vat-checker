@@ -1,7 +1,7 @@
 {
   "name": "jairforo/php-vat-autocomplete",
-  "description": "PHP VAT checker based on the European Commission web service",
-  "keywords": ["vat", "validation", "vies", "php", "checker", "checkVatService"],
+  "description": "PHP VAT Autocomplete based on the European Commission web service",
+  "keywords": ["vat", "validation", "vies", "php", "checker", "checkVatService", "autocomplete"],
   "license": "BSD-2-Clause",
   "authors": [
     {

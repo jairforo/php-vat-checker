@@ -19,7 +19,7 @@ class VATAutoCompleteTest extends TestCase
 
     public function testShouldReturnAValidEntity(): void
     {
-        $vatInfo = (new VATAutoComplete('NL', '854502130B01'))->checkVAT();
+        $vatInfo = (new VATAutoComplete('NL', '854502130B01'))->get();
 
         $this->assertArrayHasKey('country_code', $vatInfo);
         $this->assertArrayHasKey('vat_number', $vatInfo);
@@ -30,8 +30,7 @@ class VATAutoCompleteTest extends TestCase
 
     public function testShouldReturnAGermanEntityWithoutNameAndAddressData(): void
     {
-        $vatInfo = (new VATAutoComplete('DE', '811191002'))->checkVAT();
-
+        $vatInfo = (new VATAutoComplete('DE', '811191002'))->get();
         $this->assertNull($vatInfo['company_name']);
         $this->assertNull($vatInfo['address']);
         $this->assertNull($vatInfo['postcode']);
@@ -40,7 +39,7 @@ class VATAutoCompleteTest extends TestCase
 
     public function testShouldReturnAFalseVat(): void
     {
-        $vatInfo = (new VATAutoComplete('NL', '4502130B01'))->checkVAT();
+        $vatInfo = (new VATAutoComplete('NL', '4502130B01'))->get();
 
         $this->assertFalse($vatInfo['valid']);
     }
