@@ -37,7 +37,7 @@ class VATAutoComplete
         'SK'
     ];
 
-    const COUNTRIES_EXCEPTION = [
+    const COUNTRIES_NO_DATA = [
         'DE'
     ];
 
@@ -47,9 +47,7 @@ class VATAutoComplete
 
     public function __construct(string $countryCode, string $vatNumber)
     {
-        if(!in_array($countryCode, self::EU_COUNTRIES)) {
-            throw new \InvalidArgumentException("The country code does not belong to European Union");
-        }
+        $this->ensureCountryCodeIsValid($countryCode);
 
         $this->countryCode = $countryCode;
         $this->vatNumber = $vatNumber;
@@ -120,7 +118,11 @@ SOAP;
         $response = preg_replace("/(<\/?)(\w+):([^>]*>)/", "$1$2$3", $response);
         $data = (array) (new \SimpleXMLElement($response))->soapBody->checkVatResponse;
 
-        if ($data['address'] && $data['address'] !== '---') {
+        if ($data['valid'] !== "true") {
+            throw new \Exception('The provided VAT number is invalid', 422);
+        }
+
+        if ($data['address']) {
             $addressData = explode(' ', trim(str_replace("\n", ' ', $data['address'])));
             $city = $addressData[count($addressData)-1];
             $postcode = $addressData[count($addressData)-2];
@@ -139,5 +141,17 @@ SOAP;
             'postcode' => $postcode ?? null,
             'city' => $city ?? null,
         ];
+    }
+
+    /** @throws \Exception */
+    private function ensureCountryCodeIsValid(string $countryCode): void
+    {
+        if(!in_array($countryCode, self::EU_COUNTRIES)) {
+            throw new \Exception("The country code does not belong to European Union", 422);
+        }
+
+        if(in_array($countryCode, self::COUNTRIES_NO_DATA)) {
+            throw new \Exception("The country code does not provide data to European Union", 422);
+        }
     }
 }

@@ -13,7 +13,7 @@ class VATAutoCompleteTest extends TestCase
 
     public function testShouldNotHaveAnInvalidCountryCode(): void
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(\Exception::class);
         new VATAutoComplete('BR', '854502130B01');
     }
 
@@ -30,29 +30,14 @@ class VATAutoCompleteTest extends TestCase
 
     public function testShouldReturnAnInvalidEntity(): void
     {
-        $vatInfo = (new VATAutoComplete('NL', '854502130B02'))->get();
-
-        $this->assertFalse($vatInfo['valid']);
-        $this->assertNull($vatInfo['company_name']);
-        $this->assertNull($vatInfo['address']);
-        $this->assertNull($vatInfo['postcode']);
-        $this->assertNull($vatInfo['city']);
+        $this->expectException(\Exception::class);
+        (new VATAutoComplete('NL', '854502130B02'))->get();
     }
 
     public function testShouldReturnAGermanEntityWithoutNameAndAddressData(): void
     {
-        $vatInfo = (new VATAutoComplete('DE', '811191002'))->get();
-        $this->assertNull($vatInfo['company_name']);
-        $this->assertNull($vatInfo['address']);
-        $this->assertNull($vatInfo['postcode']);
-        $this->assertNull($vatInfo['city']);
-    }
-
-    public function testShouldReturnAFalseVat(): void
-    {
-        $vatInfo = (new VATAutoComplete('NL', '4502130B01'))->get();
-
-        $this->assertFalse($vatInfo['valid']);
+        $this->expectException(\Exception::class);
+        (new VATAutoComplete('DE', '811191002'))->get();
     }
 }
 
