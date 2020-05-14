@@ -61,15 +61,15 @@ The above, when successful, prints the following output:
 ```
 {
   "country_code": "NL",
-  "vat_number": "854502130B01",
+  "vat_number": "611989431B01",
   "requested_at": {
     "date": "2020-02-02 00:00:00.000000",
     "timezone_type": 1,
     "timezone": "+00:00"
   },
-  "company_name": "TRADUS B.V.",
-  "address": "WIBAUTSTRAAT 00137 C",
-  "zipcode": "1097DN",
+  "company_name": "UNICORN B.V.",
+  "address": "UNICORN STREET 007",
+  "zipcode": "1108DH",
   "city": "AMSTERDAM"
 }
 ```
