@@ -36,9 +36,9 @@ class FakeGateway implements ApiGateway
             $countryCode,
             $vatNumber,
             DateTime::createFromFormat('Y-m-dP', date('Y-m-dP')),
-            'TRADUS B.V.',
-            'WIBAUTSTRAAT 00137 C',
-            '1097DN',
+            'UNICORN B.V.',
+            'UNICORN STREET 007',
+            '1108DH',
             'AMSTERDAM'
         );
     }
