@@ -1,6 +1,6 @@
 # PHP VAT Checker
 
-[![Latest Version](https://img.shields.io/github/release/jairforo/php-vat-checker.svg?style=flat-square)](https://github.com/jairforo/jairforo/php-vat-checker/releases)
+[![Latest Version](https://img.shields.io/github/release/jairforo/php-vat-checker.svg?style=flat-square)](https://github.com/jairforo/php-vat-checker/releases)
 [![Build Status](https://img.shields.io/travis/ubient/laravel-pwned-passwords/master.svg?style=flat-square)](https://travis-ci.com/github/jairforo/php-vat-checker)
 [![StyleCI](https://styleci.io/repos/226907554/shield)](https://styleci.io/repos/226907554)
 [![Total Downloads](https://img.shields.io/packagist/dt/jairforo/php-vat-checker.svg?style=flat-square)](https://packagist.org/packages/jairforo/php-vat-checker)
