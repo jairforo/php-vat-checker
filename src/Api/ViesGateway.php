@@ -52,7 +52,7 @@ class ViesGateway implements ApiGateway
      * @param  StdClass  $response
      * @return VATResponse
      */
-    protected function buildResponse(StdClass $response) : VATResponse
+    protected function buildResponse(StdClass $response): VATResponse
     {
         $requestedAt = DateTime::createFromFormat(
             'Y-m-dP',
@@ -82,7 +82,8 @@ class ViesGateway implements ApiGateway
             $companyName,
             $address,
             $zipcode,
-            $city
+            $city,
+            $response->address
         );
     }
 }

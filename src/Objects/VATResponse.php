@@ -13,7 +13,8 @@ class VATResponse extends ImmutableObject
         string $companyName = null,
         string $address = null,
         string $zipcode = null,
-        string $city = null
+        string $city = null,
+        string $originalAddress = null
     ) {
         parent::__construct([
             'country_code' => $countryCode,
@@ -23,6 +24,7 @@ class VATResponse extends ImmutableObject
             'address' => $address,
             'zipcode' => $zipcode,
             'city' => $city,
+            'original_address' => $originalAddress,
         ]);
     }
 }
