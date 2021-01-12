@@ -24,7 +24,7 @@ class VATResponse extends ImmutableObject
             'address' => $address,
             'zipcode' => $zipcode,
             'city' => $city,
-            'original_address' => $originalAddress
+            'original_address' => $originalAddress,
         ]);
     }
 }
