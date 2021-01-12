@@ -72,7 +72,8 @@ The above, when successful, prints the following output:
   "company_name": "UNICORN B.V.",
   "address": "UNICORN STREET 007",
   "zipcode": "1108DH",
-  "city": "AMSTERDAM"
+  "city": "AMSTERDAM",
+  "original_address": "UNICORN STREET 007 1108DH AMSTERDAM"
 }
 ```
 
