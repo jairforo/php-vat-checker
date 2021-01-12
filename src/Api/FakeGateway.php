@@ -39,7 +39,9 @@ class FakeGateway implements ApiGateway
             'UNICORN B.V.',
             'UNICORN STREET 007',
             '1108DH',
-            'AMSTERDAM'
+            'AMSTERDAM',
+            'UNICORN STREET 007\n
+            1108DH AMSTERDAM'
         );
     }
 }

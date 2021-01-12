@@ -34,10 +34,12 @@ class VATCheckerTest extends TestCase
         $this->assertEquals('NL', $response->country_code);
         $this->assertEquals('854502130B01', $response->vat_number);
         $this->assertEquals(DateTime::createFromFormat('Y-m-dP', date('Y-m-dP')), $response->requested_at);
-        $this->assertEquals('TRADUS B.V.', $response->company_name);
-        $this->assertEquals('WIBAUTSTRAAT 00137 C', $response->address);
-        $this->assertEquals('1097DN', $response->zipcode);
+        $this->assertEquals('UNICORN B.V.', $response->company_name);
+        $this->assertEquals('UNICORN STREET 007', $response->address);
+        $this->assertEquals('1108DH', $response->zipcode);
         $this->assertEquals('AMSTERDAM', $response->city);
+        $this->assertEquals('UNICORN STREET 007\n
+            1108DH AMSTERDAM', $response->original_address);
     }
 
     /** @test */

@@ -82,7 +82,8 @@ class ViesGateway implements ApiGateway
             $companyName,
             $address,
             $zipcode,
-            $city
+            $city,
+            $response->address
         );
     }
 }
